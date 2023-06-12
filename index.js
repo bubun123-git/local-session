@@ -1,33 +1,33 @@
-function SaveToLocalStorage(event) {
-    event.preventDefault()
-    const name1 = event.target.username.value
-    const email = event.target.emailId.value
-    const phone = event.target.phonenumber.value
-    // localStorage.setItem('name', name1)
-    //  localStorage.setItem('email', email)
-    //  localStorage.setItem('phone', phone)
+function saveToLocalStorage(event) {
+    event.preventDefault();
 
-    let myObj = {
-        name1,
+    const name = document.getElementById('username').value;
+    const email = document.getElementById('emailId').value;
+    const phone = document.getElementById('phonenumber').value;
+
+    let userObj = {
+        name,
         email,
-        phone,
-    }
-    localStorage.setItem(obj.email, JSON.stringify(myObj))
-    showUserOnScreen(myObj)
+        phone
+    };
 
-
+    localStorage.setItem(email, JSON.stringify(userObj));
+    showUserOnScreen(userObj);
 }
-function showUserOnScreen() {
-    const ParentElement = document.getElementById('listofitems')
-    ParentElement.innerHTML = pare.innerHTML + $(obj.name) - $(obj.emailId) - $(obj.phonenumber)
-    const deleteButton = document.createElement('input')
-    deleteButton.type = "button"
-    deleteButton.value = 'Delete'
+
+function showUserOnScreen(userObj) {
+    const parentElement = document.getElementById('listofitems');
+    const listItem = document.createElement('li');
+    listItem.innerText = `${userObj.name} - ${userObj.email} - ${userObj.phone}`;
+
+    const deleteButton = document.createElement('input');
+    deleteButton.type = "button";
+    deleteButton.value = 'Delete';
     deleteButton.onclick = () => {
-        localStorage.removeItem(obj.email)
-        ParentElement = removeChild(childElement)
-    }
-    childElement = appedChild(deleteButton)
-    ParentElement.appendChild(childItem)
-}
+        localStorage.removeItem(userObj.email);
+        parentElement.removeChild(listItem);
+    };
 
+    listItem.appendChild(deleteButton);
+    parentElement.appendChild(listItem);
+}
